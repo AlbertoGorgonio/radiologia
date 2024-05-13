@@ -1,6 +1,31 @@
+import 'package:firebase_core/firebase_core.dart'; // Importa la biblioteca de Firebase Core
 import 'package:flutter/material.dart';
 
 import 'login.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized(); // Asegura que los widgets estén inicializados
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyCRBQEPzX86RtLqnBWbOOFvFrJP_tzzTyk",
+      authDomain: "radiologia-df93b.web.app",
+      projectId: "radiologia-df93b",
+      appId: "1:800472663482:android:1f9752ef3727a84536c983",
+      messagingSenderId: "800472663482",
+    ),
+  );
+  runApp(MyApp()); // Cambiado de MyScreen a MyApp
+}
+
+class MyApp extends StatelessWidget { // Cambiado de MyScreen a MyApp
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MyScreen(),
+      debugShowCheckedModeBanner: false, // Oculta la barra de debug
+    );
+  }
+}
 
 class MyScreen extends StatelessWidget {
   @override
@@ -49,11 +74,4 @@ class MyScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: MyScreen(),
-    debugShowCheckedModeBanner: false, // Oculta la barra de debug
-  ));
 }

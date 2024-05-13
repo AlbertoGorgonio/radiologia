@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800472663482",
+    "project_id": "radiologia-df93b",
+    "storage_bucket": "radiologia-df93b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800472663482:android:1f9752ef3727a84536c983",
+        "android_client_info": {
+          "package_name": "com.example.radiologia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRBQEPzX86RtLqnBWbOOFvFrJP_tzzTyk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

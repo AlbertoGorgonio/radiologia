@@ -1,8 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart'; // Importa la biblioteca de autenticación de Firebase
 import 'package:flutter/material.dart';
 
 import 'home.dart';
 
 class LoginScreen extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  Future<void> signInWithEmailAndPassword(BuildContext context, String email, String password) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      // Si la autenticación es exitosa, navega a la pantalla de inicio
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HomeScreen()),
+      );
+    } catch (e) {
+      // Si hay un error en la autenticación, muestra un mensaje de error
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Error de inicio de sesión: ${e.toString()}'),
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +55,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   labelText: 'Correo Electrónico',
                   prefixIcon: Icon(Icons.email),
@@ -37,6 +63,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 20.0),
               TextFormField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Contraseña',
                   prefixIcon: Icon(Icons.lock),
@@ -47,10 +74,7 @@ class LoginScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                    );
+                    signInWithEmailAndPassword(context, emailController.text, passwordController.text);
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
